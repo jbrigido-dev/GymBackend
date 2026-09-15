@@ -1,13 +1,10 @@
 package com.jbrigido.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Trainer {
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,7 +23,8 @@ public class Trainer {
     @Column(nullable = false)
     private LocalDate birth;
     @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user; 
-    
+    @JoinColumn(name = "userid", nullable = false)
+    private User user;
+    @OneToMany(mappedBy = "chargedUser")
+    private List<PaymentMembership> listPaymentMembership;
 }

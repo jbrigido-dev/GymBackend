@@ -20,9 +20,11 @@ public class PaymentMembership {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private Partner partner;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private Membership membership;
 
     @Column(nullable = false)
@@ -41,5 +43,8 @@ public class PaymentMembership {
     @JoinColumn(name = "membershipType", nullable = false)
     private MembershipType membershipType;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user", nullable = false)
+    private Trainer chargedUser;
 
 }
