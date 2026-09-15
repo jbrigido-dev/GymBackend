@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -33,9 +34,12 @@ public class PaymentMembership {
     @Column(nullable = false)
     private LocalDate expiredDate;
 
-    @Column(nullable = false)
-    private Float amount;
+    @Column(nullable = false, scale = 2)
+    private BigDecimal amount;
 
-    @Column(nullable = false)
-    private Long membershipType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "membershipType", nullable = false)
+    private MembershipType membershipType;
+
+
 }

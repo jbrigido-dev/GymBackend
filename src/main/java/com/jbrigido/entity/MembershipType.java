@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
@@ -18,8 +20,8 @@ public class MembershipType {
     @Column(nullable = false, length = 20)
     private String description;
 
-    @Column(nullable = false)
-    private Float amount;
+    @Column(nullable = false, scale = 2)
+    private BigDecimal amount;
 
     @Column(nullable = false)
     private Integer duration;
